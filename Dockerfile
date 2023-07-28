@@ -143,12 +143,30 @@ RUN chmod +x *.sh
 
 # Run any additional tasks here that are too tedious to put in
 # this dockerfile directly.
-RUN set -eux \
-    && /scripts/setup.sh;rm /scripts/.pass_*
-RUN echo 'figlet -t "Kartoza Docker PostGIS"' >> ~/.bashrc
 
+# Installez les dépendances requises pour l'extension tds_fdw
+RUN apt-get update \
+    && apt-get install -y freetds-dev freetds-bin \
+    && apt-get clean \
+    && apt-get install -y git \
+    && git clone https://github.com/tds-fdw/tds_fdw.git \
+    && cd tds_fdw \
+    && make && make install \
+    && rm -rf /var/lib/apt/lists/*
+
+# Copiez le fichier d'extension tds_fdw dans le conteneur
+#COPY tds_fdw.control /usr/share/postgresql/${POSTGRES_MAJOR_VERSION}/extension/
+
+# Exécutez la commande pour installer l'extension tds_fdw dans PostgreSQL
+RUN echo "CREATE EXTENSION tds_fdw;" >> /scripts/init.sql
+
+RUN set -eux \
+    && /scripts/setup.sh \
+    && rm /scripts/.pass_* \
+    && echo 'figlet -t "Kartoza Docker PostGIS"' >> ~/.bashrc
 
 ENTRYPOINT ["/bin/bash", "/scripts/docker-entrypoint.sh"]
+
 
 
 ##############################################################################
