@@ -151,7 +151,7 @@ RUN git clone https://github.com/tds-fdw/tds_fdw.git \
     && rm -rf /var/lib/apt/lists/*
 
 # Copiez le fichier extension tds_fdw dans le conteneur
-COPY tds_fdw.control /usr/share/postgresql/${POSTGRES_MAJOR_VERSION}/extension/
+# COPY tds_fdw.control /usr/share/postgresql/${POSTGRES_MAJOR_VERSION}/extension/
 
 # Exécutez la commande pour installer l'extension tds_fdw dans PostgreSQL
 RUN echo "CREATE EXTENSION tds_fdw;" >> /scripts/init.sql
