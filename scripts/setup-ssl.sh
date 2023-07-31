@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-#Saut de ligne LF 3
+
 source /scripts/env-data.sh
 
 SETUP_LOCKFILE="${CONF_LOCKFILE_DIR}/.ssl.conf.lock"
