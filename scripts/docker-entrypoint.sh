@@ -1,22 +1,14 @@
 #!/usr/bin/env bash
-
 set -e
-
 chmod +x source /scripts/env-data.sh
-
 # Setup postgres CONF file
-
 chmod +x source /scripts/setup-conf.sh
-
 # Setup ssl
 chmod +x source /scripts/setup-ssl.sh
-
 # Setup pg_hba.conf
-
 chmod +x source /scripts/setup-pg_hba.sh
 # Function to add figlet
 figlet -t "Kartoza Docker PostGIS"
-
 # Gosu preparations
 if [[ ${RUN_AS_ROOT} =~ [Ff][Aa][Ll][Ss][Ee] ]];then
   USER_ID=${POSTGRES_UID:-1000}
