@@ -157,7 +157,7 @@ RUN git clone https://github.com/tds-fdw/tds_fdw.git \
 RUN echo "CREATE EXTENSION tds_fdw;" >> /scripts/init.sql
 
 RUN set -eux \
-    && /scripts/setup.sh \
+    && chmod +x /scripts/setup.sh \
     && rm /scripts/.pass_*\
     && echo 'figlet -t "Kartoza Docker PostGIS"' >> ~/.bashrc
 
