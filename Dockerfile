@@ -23,7 +23,7 @@ RUN set -eux \
     && apt-get update \
     && apt-get -y --no-install-recommends install \
         locales gnupg2 wget ca-certificates rpl pwgen software-properties-common  iputils-ping \
-        apt-transport-https curl gettext \
+        apt-transport-https curl gettext freetds-dev freetds-bin git\
     && dpkg-divert --local --rename --add /sbin/initctl
 
 RUN apt-get -y update; apt-get -y install build-essential autoconf  libxml2-dev zlib1g-dev netcat gdal-bin \
@@ -145,10 +145,7 @@ RUN chmod +x *.sh
 # this dockerfile directly.
 
 # Installez les dépendances requises pour l'extension tds_fdw
-RUN apt-get install -y freetds-dev freetds-bin \
-    && apt-get clean \
-    && apt-get install -y git \
-    && git clone https://github.com/tds-fdw/tds_fdw.git \
+RUN git clone https://github.com/tds-fdw/tds_fdw.git \
     && cd tds_fdw \
     && make && make install \
     && rm -rf /var/lib/apt/lists/*
