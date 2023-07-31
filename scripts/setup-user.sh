@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-#Saut de ligne LF 2
+
 source /scripts/env-data.sh
 
 # This script will setup new configured user
