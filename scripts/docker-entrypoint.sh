@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -e
 chmod +x source /scripts/env-data.sh
-# Setup postgres CONF file
+# Setup postgres CONF file 1
 chmod +x source /scripts/setup-conf.sh
 # Setup ssl
 chmod +x source /scripts/setup-ssl.sh
