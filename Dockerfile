@@ -23,7 +23,7 @@ RUN set -eux \
     && apt-get update \
     && apt-get -y --no-install-recommends install \
         locales gnupg2 wget ca-certificates rpl pwgen software-properties-common  iputils-ping \
-        apt-transport-https curl gettext freetds-dev freetds-bin git\
+        apt-transport-https curl gettext freetds-dev freetds-bin git dos2unix\
     && dpkg-divert --local --rename --add /sbin/initctl
 
 RUN apt-get -y update; apt-get -y install build-essential autoconf  libxml2-dev zlib1g-dev netcat gdal-bin \
