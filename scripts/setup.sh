@@ -1,11 +1,8 @@
 #!/usr/bin/env bash
-#Saut de ligne LF v4
-
 # Add any additional setup tasks here
 chmod 600 /etc/ssl/private/ssl-cert-snakeoil.key
 
 # These tasks are run as root
-chmod +r /scripts/env-data.sh
 source /scripts/env-data.sh
 
 # Create backup template for conf
@@ -17,5 +14,3 @@ sed -i 's/md5/${PASSWORD_AUTHENTICATION}/g' $ROOT_CONF/pg_hba.conf
 
 
 cat $ROOT_CONF/pg_hba.conf > $ROOT_CONF/pg_hba.conf.template
-
-
