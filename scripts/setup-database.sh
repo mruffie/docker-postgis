@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-#Saut de ligne LF
-source /scripts/env-data.sh
+#Saut de ligne LF 2
+source /env-data.sh
 
 
 
@@ -94,7 +94,7 @@ done
 echo "postgres ready"
 
 # Setup user
-source /scripts/setup-user.sh
+source /setup-user.sh
 
 export PGPASSWORD=${POSTGRES_PASS}
 

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #Saut de ligne LF
-source /scripts/env-data.sh
+source /env-data.sh
 
 create_dir ${EXTRA_CONF_DIR}
 create_dir ${CONF_LOCKFILE_DIR}
