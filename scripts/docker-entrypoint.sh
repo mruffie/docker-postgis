@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+#Gestion des erreurs
 set -e
 set -x
 chmod +x /scripts/env-data.sh
