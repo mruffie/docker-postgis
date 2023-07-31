@@ -4,7 +4,7 @@
 chmod 600 /etc/ssl/private/ssl-cert-snakeoil.key
 
 # These tasks are run as root
-source /scripts/env-data.sh
+source /env-data.sh
 
 # Create backup template for conf
 cat $CONF > $CONF.template
