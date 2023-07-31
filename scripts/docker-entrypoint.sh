@@ -2,18 +2,18 @@
 #Saut de ligne LF
 set -e
 
-source /scripts/env-data.sh
+source /env-data.sh
 
 # Setup postgres CONF file
 
-source /scripts/setup-conf.sh
+source /setup-conf.sh
 
 # Setup ssl
-source /scripts/setup-ssl.sh
+source /setup-ssl.sh
 
 # Setup pg_hba.conf
 
-source /scripts/setup-pg_hba.sh
+source /setup-pg_hba.sh
 # Function to add figlet
 figlet -t "Kartoza Docker PostGIS"
 
@@ -48,15 +48,15 @@ if [[ ${RUN_AS_ROOT} =~ [Ff][Aa][Ll][Ss][Ee] ]];then
 
 fi
 
-if [[ -f /scripts/.pass_20.txt ]]; then
-  USER_CREDENTIAL_PASS=$(cat /scripts/.pass_20.txt)
-  cp /scripts/.pass_20.txt /tmp/PGPASSWORD.txt
+if [[ -f /.pass_20.txt ]]; then
+  USER_CREDENTIAL_PASS=$(cat /.pass_20.txt)
+  cp /.pass_20.txt /tmp/PGPASSWORD.txt
   echo -e "[Entrypoint] GENERATED Postgres  PASSWORD: \e[1;31m $USER_CREDENTIAL_PASS \033[0m"
 fi
 
-if [[ -f /scripts/.pass_22.txt ]]; then
-  USER_CREDENTIAL_PASS=$(cat /scripts/.pass_22.txt)
-  cp /scripts/.pass_22.txt /tmp/REPLPASSWORD.txt
+if [[ -f /.pass_22.txt ]]; then
+  USER_CREDENTIAL_PASS=$(cat /.pass_22.txt)
+  cp /.pass_22.txt /tmp/REPLPASSWORD.txt
   echo -e "[Entrypoint] GENERATED Replication  PASSWORD: \e[1;34m $USER_CREDENTIAL_PASS \033[0m"
 fi
 
@@ -64,7 +64,7 @@ fi
 if [[ -z "$REPLICATE_FROM" ]]; then
     # This means this is a master instance. We check that database exists
     echo -e "[Entrypoint] Setup master database \033[0m"
-    source /scripts/setup-database.sh
+    source /setup-database.sh
     entry_point_script
     kill_postgres
 else
@@ -77,7 +77,7 @@ else
       chown -R postgres:postgres ${DATADIR} ${WAL_ARCHIVE}
       chmod -R 750 ${DATADIR} ${WAL_ARCHIVE}
     fi
-    source /scripts/setup-replication.sh
+    source /setup-replication.sh
 fi
 
 

@@ -145,8 +145,7 @@ RUN chmod +x *.sh
 # this dockerfile directly.
 
 # Installez les dépendances requises pour l'extension tds_fdw
-RUN apt-get update \
-    && apt-get install -y freetds-dev freetds-bin \
+RUN apt-get install -y freetds-dev freetds-bin \
     && apt-get clean \
     && apt-get install -y git \
     && git clone https://github.com/tds-fdw/tds_fdw.git \
