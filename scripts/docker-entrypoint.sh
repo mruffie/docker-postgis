@@ -61,7 +61,8 @@ fi
 if [[ -z "$REPLICATE_FROM" ]]; then
     # This means this is a master instance. We check that database exists
     echo -e "[Entrypoint] Setup master database \033[0m"
-    chmod +x source /scripts/setup-database.sh
+    chmod +x /scripts/setup-database.sh
+    source /scripts/setup-database.sh
     entry_point_script
     kill_postgres
 else
@@ -74,7 +75,8 @@ else
       chown -R postgres:postgres ${DATADIR} ${WAL_ARCHIVE}
       chmod -R 750 ${DATADIR} ${WAL_ARCHIVE}
     fi
-    chmod +x source /scripts/setup-replication.sh
+    chmod +x /scripts/setup-replication.sh
+    source /scripts/setup-replication.sh
 fi
 
 
