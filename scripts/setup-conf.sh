@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 #Saut de ligne LF
+chmod +r /env-data.sh
 source /env-data.sh
 
 create_dir ${EXTRA_CONF_DIR}
