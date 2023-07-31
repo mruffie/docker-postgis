@@ -1,19 +1,19 @@
 #!/usr/bin/env bash
-#Saut de ligne LF 2
+
 set -e
-RUN chmod +x *.sh
-source /scripts/env-data.sh
+
+chmod +x chmod +x source /scripts/env-data.sh
 
 # Setup postgres CONF file
 
-source /scripts/setup-conf.sh
+chmod +x chmod +x source /scripts/setup-conf.sh
 
 # Setup ssl
-source /scripts/setup-ssl.sh
+chmod +x chmod +x source /scripts/setup-ssl.sh
 
 # Setup pg_hba.conf
 
-source /scripts/setup-pg_hba.sh
+chmod +x chmod +x source /scripts/setup-pg_hba.sh
 # Function to add figlet
 figlet -t "Kartoza Docker PostGIS"
 
@@ -64,7 +64,7 @@ fi
 if [[ -z "$REPLICATE_FROM" ]]; then
     # This means this is a master instance. We check that database exists
     echo -e "[Entrypoint] Setup master database \033[0m"
-    source /scripts/setup-database.sh
+    chmod +x source /scripts/setup-database.sh
     entry_point_script
     kill_postgres
 else
@@ -77,7 +77,7 @@ else
       chown -R postgres:postgres ${DATADIR} ${WAL_ARCHIVE}
       chmod -R 750 ${DATADIR} ${WAL_ARCHIVE}
     fi
-    source /scripts/setup-replication.sh
+    chmod +x source /scripts/setup-replication.sh
 fi
 
 
