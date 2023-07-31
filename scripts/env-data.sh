@@ -1,6 +1,4 @@
 #!/usr/bin/env bash
-#Saut de ligne LF 2
-
 POSTGRES_MAJOR_VERSION=$(cat /tmp/pg_version.txt)
 POSTGIS_MAJOR=$(cat /tmp/pg_major_version.txt)
 POSTGIS_MINOR_RELEASE=$(cat /tmp/pg_minor_version.txt)
@@ -82,10 +80,10 @@ fi
 function generate_random_string() {
   STRING_LENGTH=$1
   random_pass_string=$(cat /dev/urandom | tr -dc '[:alnum:]' | head -c "${STRING_LENGTH}")
-  if [[ ! -f /.pass_${STRING_LENGTH}.txt ]]; then
-    echo ${random_pass_string} > /.pass_${STRING_LENGTH}.txt
+  if [[ ! -f /scripts/.pass_${STRING_LENGTH}.txt ]]; then
+    echo ${random_pass_string} > /scripts/.pass_${STRING_LENGTH}.txt
   fi
-  export RAND=$(cat /.pass_${STRING_LENGTH}.txt)
+  export RAND=$(cat /scripts/.pass_${STRING_LENGTH}.txt)
 }
 
 # Make sure we have a user set up
@@ -410,7 +408,6 @@ function restart_postgres {
   kill_postgres
 
   # Brought postgres back up again
-  chmod +r /scripts/env-data.sh
   source  /scripts/env-data.sh
   su - postgres -c "$SETVARS $POSTGRES -D $DATADIR -c config_file=$CONF &"
 
@@ -580,4 +577,3 @@ function non_root_permission() {
   chmod -R 750 ${DATADIR} ${WAL_ARCHIVE}
 
 }
-
