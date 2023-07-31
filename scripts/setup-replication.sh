@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-#Saut de ligne LF 2
+
 source /scripts/env-data.sh
 
 # This script will setup slave instance to use standby replication
@@ -46,5 +46,3 @@ if [[ "$WAL_LEVEL" == 'replica' && "${REPLICATION}" =~ [Tt][Rr][Uu][Ee] ]]; then
   fi
 
 fi
-
-
