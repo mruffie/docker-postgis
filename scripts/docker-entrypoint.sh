@@ -2,18 +2,18 @@
 
 set -e
 
-chmod +x chmod +x source /scripts/env-data.sh
+chmod +x source /scripts/env-data.sh
 
 # Setup postgres CONF file
 
-chmod +x chmod +x source /scripts/setup-conf.sh
+chmod +x source /scripts/setup-conf.sh
 
 # Setup ssl
-chmod +x chmod +x source /scripts/setup-ssl.sh
+chmod +x source /scripts/setup-ssl.sh
 
 # Setup pg_hba.conf
 
-chmod +x chmod +x source /scripts/setup-pg_hba.sh
+chmod +x source /scripts/setup-pg_hba.sh
 # Function to add figlet
 figlet -t "Kartoza Docker PostGIS"
 
