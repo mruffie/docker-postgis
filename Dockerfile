@@ -150,14 +150,14 @@ RUN git clone https://github.com/tds-fdw/tds_fdw.git \
     && make && make install \
     && rm -rf /var/lib/apt/lists/*
 
-# Copiez le fichier extension tds_fdw dans le conteneur
-# COPY tds_fdw.control /usr/share/postgresql/${POSTGRES_MAJOR_VERSION}/extension/
+# Copiez le fichier d'extension tds_fdw dans le conteneur
+#COPY tds_fdw.control /usr/share/postgresql/${POSTGRES_MAJOR_VERSION}/extension/
 
 # Exécutez la commande pour installer l'extension tds_fdw dans PostgreSQL
 RUN echo "CREATE EXTENSION tds_fdw;" >> /scripts/init.sql
 
 RUN set -eux \
-    && /scripts/setup.sh \
+    && chmod +x /scripts/setup.sh \
     #&& rm /scripts/.pass_*\
     && echo 'figlet -t "Kartoza Docker PostGIS"' >> ~/.bashrc
 

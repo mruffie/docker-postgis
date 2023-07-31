@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 #Saut de ligne LF 2
 set -e
-
+RUN chmod +x *.sh
 source /scripts/env-data.sh
 
 # Setup postgres CONF file
