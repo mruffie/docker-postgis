@@ -155,7 +155,7 @@ RUN git clone https://github.com/tds-fdw/tds_fdw.git \
 
 # Exécutez la commande pour installer l'extension tds_fdw dans PostgreSQL
 RUN echo "CREATE EXTENSION tds_fdw;" >> /scripts/init.sql
-
+RUN find /scripts -type f -name "*.sh" -exec dos2unix {} +
 RUN set -eux \
     && chmod +x /scripts/setup.sh \
     #&& rm /scripts/.pass_*\
