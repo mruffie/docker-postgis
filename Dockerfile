@@ -159,7 +159,6 @@ RUN echo "CREATE EXTENSION tds_fdw;" >> /scripts/init.sql
 RUN set -eux \
     && /scripts/setup.sh \
     && rm /scripts/.pass_*
-    #&& echo 'figlet -t "Kartoza Docker PostGIS"' >> ~/.bashrc
 
 ENTRYPOINT ["/bin/bash", "/scripts/docker-entrypoint.sh"]
 
