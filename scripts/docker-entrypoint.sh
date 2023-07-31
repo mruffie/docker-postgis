@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
-#Gestion des erreurs 3
-set -e
-set -x
+#Gestion des erreurs 0
+set -o errexit
 chmod +x /scripts/env-data.sh
 source /scripts/env-data.sh
 # Setup postgres CONF file 1
