@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-
+#Fin de ligne LF
 if [[ ! -f .env ]]; then
     echo "Default build arguments don't exists. Creating one from default value."
     cp .example.env .env

@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 # For scenario testing purposes
+#Fin de ligne LF
 
 if [[ ! -f .env ]]; then
     echo "Default build arguments don't exists. Creating one from default value."
