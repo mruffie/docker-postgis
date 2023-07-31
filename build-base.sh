@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Building an debian base image
-#Fin de ligne LF
+#Fin de ligne LF2
 
 if [[ ! -f .env ]]; then
     echo "Default build arguments don't exists. Creating one from default value."

@@ -1,6 +1,6 @@
 #!/bin/bash
 # Commit and redeploy the user map container
-#Fin de ligne LF
+#Fin de ligne LF2
 #
 if [ $# -ne 1 ]; then
     echo "Commit and then redeploy the user_map container."

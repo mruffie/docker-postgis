@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
-#Saut de ligne LF
+#Saut de ligne LF 2
 chmod +r /env-data.sh
-source /env-data.sh
+source /scripts/env-data.sh
 
 create_dir ${EXTRA_CONF_DIR}
 create_dir ${CONF_LOCKFILE_DIR}
