@@ -1,19 +1,22 @@
 #!/usr/bin/env bash
-#Gestion des erreurs 0
-set -o errexit
-chmod +r+x /scripts/env-data.sh
+
+set -e
+
 source /scripts/env-data.sh
-# Setup postgres CONF file 1
-chmod +r+x /scripts/setup-conf.sh
+
+# Setup postgres CONF file
+
 source /scripts/setup-conf.sh
+
 # Setup ssl
-chmod +r+x /scripts/setup-ssl.sh
 source /scripts/setup-ssl.sh
+
 # Setup pg_hba.conf
-chmod +r+x /scripts/setup-pg_hba.sh
+
 source /scripts/setup-pg_hba.sh
 # Function to add figlet
 figlet -t "Kartoza Docker PostGIS"
+
 # Gosu preparations
 if [[ ${RUN_AS_ROOT} =~ [Ff][Aa][Ll][Ss][Ee] ]];then
   USER_ID=${POSTGRES_UID:-1000}
@@ -45,15 +48,15 @@ if [[ ${RUN_AS_ROOT} =~ [Ff][Aa][Ll][Ss][Ee] ]];then
 
 fi
 
-if [[ -f /.pass_20.txt ]]; then
-  USER_CREDENTIAL_PASS=$(cat /.pass_20.txt)
-  cp /.pass_20.txt /tmp/PGPASSWORD.txt
+if [[ -f /scripts/.pass_20.txt ]]; then
+  USER_CREDENTIAL_PASS=$(cat /scripts/.pass_20.txt)
+  cp /scripts/.pass_20.txt /tmp/PGPASSWORD.txt
   echo -e "[Entrypoint] GENERATED Postgres  PASSWORD: \e[1;31m $USER_CREDENTIAL_PASS \033[0m"
 fi
 
-if [[ -f /.pass_22.txt ]]; then
-  USER_CREDENTIAL_PASS=$(cat /.pass_22.txt)
-  cp /.pass_22.txt /tmp/REPLPASSWORD.txt
+if [[ -f /scripts/.pass_22.txt ]]; then
+  USER_CREDENTIAL_PASS=$(cat /scripts/.pass_22.txt)
+  cp /scripts/.pass_22.txt /tmp/REPLPASSWORD.txt
   echo -e "[Entrypoint] GENERATED Replication  PASSWORD: \e[1;34m $USER_CREDENTIAL_PASS \033[0m"
 fi
 
@@ -61,7 +64,6 @@ fi
 if [[ -z "$REPLICATE_FROM" ]]; then
     # This means this is a master instance. We check that database exists
     echo -e "[Entrypoint] Setup master database \033[0m"
-    chmod +r+x /scripts/setup-database.sh
     source /scripts/setup-database.sh
     entry_point_script
     kill_postgres
@@ -75,7 +77,6 @@ else
       chown -R postgres:postgres ${DATADIR} ${WAL_ARCHIVE}
       chmod -R 750 ${DATADIR} ${WAL_ARCHIVE}
     fi
-    chmod +r+x /scripts/setup-replication.sh
     source /scripts/setup-replication.sh
 fi
 
