@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+#Saut le ligne LF
 
 # exit immediately if test fails
 set -e

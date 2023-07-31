@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-
+#Saut le ligne LF
 # Display test environment variable
 
 cat << EOF

@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-
+#Saut le ligne LF
 ## Filter list of locales from a given filter args
 ## Parse into array
 LANG_ARR=(${LANGS//,/ })

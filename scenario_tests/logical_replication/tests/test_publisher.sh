@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-
+#Saut le ligne LF
 set -e
 
 source /scripts/env-data.sh
