@@ -139,6 +139,20 @@ RUN git clone https://github.com/tds-fdw/tds_fdw.git \
 # Copiez le fichier d'extension tds_fdw dans le conteneur
 #COPY tds_fdw.control /usr/share/postgresql/${POSTGRES_MAJOR_VERSION}/extension/
 
+#COPY des fichiers de configuration VPN
+ENV VPN_HOST
+ENV VPN_USERNAME
+ENV VPN_PASSWORD	
+
+COPY vpn.conf /etc/openvpn/vpn.conf
+COPY userpass.txt /etc/openvpn/userpass.txt
+
+#Ajout ligne de conf hote vpn
+RUN echo "auth-user-pass /etc/openvpn/userpass.txt" >> /etc/openvpn/client.conf
+RUN echo "remote $VPN_HOST" >> /etc/openvpn/client.conf
+RUN echo "$VPN_USERNAME" > /etc/openvpn/userpass.txt
+RUN echo "$VPN_PASSWORD" >> /etc/openvpn/userpass.txt
+
 # Exécutez la commande pour installer l'extension tds_fdw dans PostgreSQL
 RUN echo "CREATE EXTENSION tds_fdw;" >> /scripts/init.sql
 RUN find /scripts -type f -name "*.sh" -exec dos2unix {} +

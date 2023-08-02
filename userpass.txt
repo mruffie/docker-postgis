@@ -1,2 +1,2 @@
-<username>
-<password>
+$VPN_USERNAME
+$VPN_PASSWORD
