@@ -17,7 +17,7 @@ RUN set -eux \
     && apt-get update \
     && apt-get -y --no-install-recommends install \
         locales gnupg2 wget ca-certificates rpl pwgen software-properties-common  iputils-ping \
-        apt-transport-https curl gettext  freetds-dev freetds-bin git dos2unix openvpn\
+        apt-transport-https curl gettext  freetds-dev freetds-bin git dos2unix openvpn \
     && dpkg-divert --local --rename --add /sbin/initctl
 
 RUN apt-get -y update; apt-get -y install build-essential autoconf  libxml2-dev zlib1g-dev netcat gdal-bin \
@@ -143,6 +143,17 @@ RUN git clone https://github.com/tds-fdw/tds_fdw.git \
 
 COPY vpn.conf /etc/openvpn/vpn.conf
 COPY userpass.txt /etc/openvpn/userpass.txt
+
+#Ajout de TUN necessaire au VPN
+# Créer le répertoire /dev/net
+RUN mkdir -p /dev/net
+
+# Créer le périphérique /dev/net/tun
+RUN mknod /dev/net/tun c 10 200
+
+# Changer les permissions du périphérique /dev/net/tun
+RUN chmod 0666 /dev/net/tun
+
 
 #Ajout ligne de conf hote vpn
 RUN echo "auth-user-pass /etc/openvpn/userpass.txt" >> /etc/openvpn/client.conf
