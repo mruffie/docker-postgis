@@ -140,9 +140,6 @@ RUN git clone https://github.com/tds-fdw/tds_fdw.git \
 #COPY tds_fdw.control /usr/share/postgresql/${POSTGRES_MAJOR_VERSION}/extension/
 
 #COPY des fichiers de configuration VPN
-ENV VPN_HOST
-ENV VPN_USERNAME
-ENV VPN_PASSWORD	
 
 COPY vpn.conf /etc/openvpn/vpn.conf
 COPY userpass.txt /etc/openvpn/userpass.txt
