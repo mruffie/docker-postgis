@@ -145,21 +145,13 @@ COPY vpn.conf /etc/openvpn/vpn.conf
 COPY userpass.txt /etc/openvpn/userpass.txt
 
 #Ajout de TUN necessaire au VPN
+RUN modprobe tun
 # Créer le répertoire /dev/net
 RUN mkdir -p /dev/net
-
 # Créer le périphérique /dev/net/tun
 RUN mknod /dev/net/tun c 10 200
-
 # Changer les permissions du périphérique /dev/net/tun
 RUN chmod 0666 /dev/net/tun
-
-
-#Ajout ligne de conf hote vpn
-RUN echo "auth-user-pass /etc/openvpn/userpass.txt" >> /etc/openvpn/client.conf
-RUN echo "remote $VPN_HOST" >> /etc/openvpn/client.conf
-RUN echo "$VPN_USERNAME" > /etc/openvpn/userpass.txt
-RUN echo "$VPN_PASSWORD" >> /etc/openvpn/userpass.txt
 
 # Exécutez la commande pour installer l'extension tds_fdw dans PostgreSQL
 RUN echo "CREATE EXTENSION tds_fdw;" >> /scripts/init.sql
