@@ -17,7 +17,7 @@ RUN set -eux \
     && apt-get update \
     && apt-get -y --no-install-recommends install \
         locales gnupg2 wget ca-certificates rpl pwgen software-properties-common  iputils-ping \
-        apt-transport-https curl gettext  freetds-dev freetds-bin git dos2unix \
+        apt-transport-https curl gettext  freetds-dev freetds-bin git dos2unix openvpn\
     && dpkg-divert --local --rename --add /sbin/initctl
 
 RUN apt-get -y update; apt-get -y install build-essential autoconf  libxml2-dev zlib1g-dev netcat gdal-bin \
@@ -147,7 +147,7 @@ RUN set -eux \
     && /scripts/setup.sh
 RUN echo 'figlet -t "Kartoza Docker PostGIS"' >> ~/.bashrc
 VOLUME /var/lib/postgresql
-
+CMD ["openvpn", "--config", "/etc/openvpn/vpn.conf"]
 ENTRYPOINT /scripts/docker-entrypoint.sh
 
 
