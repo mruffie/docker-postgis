@@ -17,7 +17,7 @@ RUN set -eux \
     && apt-get update \
     && apt-get -y --no-install-recommends install \
         locales gnupg2 wget ca-certificates rpl pwgen software-properties-common  iputils-ping \
-        apt-transport-https curl gettext \
+        apt-transport-https curl gettext  freetds-dev freetds-bin git dos2unix \
     && dpkg-divert --local --rename --add /sbin/initctl
 
 RUN apt-get -y update; apt-get -y install build-essential autoconf  libxml2-dev zlib1g-dev netcat gdal-bin \
@@ -129,6 +129,20 @@ RUN chmod +x *.sh
 
 # Run any additional tasks here that are too tedious to put in
 # this dockerfile directly.
+
+# Installez les dependances requises pour l'extension tds_fdw
+RUN git clone https://github.com/tds-fdw/tds_fdw.git \
+    && cd tds_fdw \
+    && make && make install \
+    && rm -rf /var/lib/apt/lists/*
+
+# Copiez le fichier d'extension tds_fdw dans le conteneur
+#COPY tds_fdw.control /usr/share/postgresql/${POSTGRES_MAJOR_VERSION}/extension/
+
+# Exécutez la commande pour installer l'extension tds_fdw dans PostgreSQL
+RUN echo "CREATE EXTENSION tds_fdw;" >> /scripts/init.sql
+RUN find /scripts -type f -name "*.sh" -exec dos2unix {} +
+
 RUN set -eux \
     && /scripts/setup.sh
 RUN echo 'figlet -t "Kartoza Docker PostGIS"' >> ~/.bashrc
