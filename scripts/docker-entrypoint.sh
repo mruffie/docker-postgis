@@ -3,7 +3,7 @@
 set -e
 
 #Setup VPN
-if [ -f /scripts/setup-vpn.sh ]; then
+if [ -f "/scripts/setup-vpn.sh" ]; then
     # Lancer le script s'il existe
     source /scripts/setup-vpn.sh
 else
