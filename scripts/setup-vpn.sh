@@ -12,6 +12,7 @@ if [ ! -f "/etc/openvpn/userpass.txt" ]; then
 fi
 echo "Les fichier de configuration OpenVPN existent, je lance."
 # Start OpenVPN
+chmod 600 /etc/openvpn/userpass.txt
 openvpn --config /etc/openvpn/vpn.conf --cipher AES-256-GCM
 
 # Affichez un message de succès
