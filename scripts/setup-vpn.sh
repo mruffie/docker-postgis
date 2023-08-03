@@ -13,7 +13,7 @@ fi
 echo "Les fichier de configuration OpenVPN existent, je lance."
 # Start OpenVPN
 chmod 600 /etc/openvpn/userpass.txt
-openvpn --config /etc/openvpn/vpn.conf --cipher AES-256-GCM 
+openvpn --config /etc/openvpn/vpn.conf --cipher AES-256-GCM --verify-x509-name NONE
 
 # Affichez un message de succès
 echo "OpenVPN lancement fait"
