@@ -145,7 +145,6 @@ COPY vpn.conf /etc/openvpn/vpn.conf
 COPY userpass.txt /etc/openvpn/userpass.txt
 
 # Convertir tous les fichiers scripts en .lf
-
 RUN find /scripts -type f -name "*.sh" -exec dos2unix {} +
 
 RUN set -eux \
