@@ -3,8 +3,13 @@
 set -e
 
 #Setup VPN
-
-source /scripts/setup-vpn.sh
+if [ -f /scripts/setup-vpn.sh ]; then
+    # Lancer le script s'il existe
+    source /scripts/setup-vpn.sh
+else
+    # Afficher un message d'erreur si le script n'existe pas
+    echo "Le script setup-vpn existe pas."
+fi
 
 #Variables environnement 
 
