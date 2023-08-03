@@ -152,7 +152,6 @@ RUN set -eux \
     && /scripts/setup.sh
 RUN echo 'figlet -t "Kartoza Docker PostGIS"' >> ~/.bashrc
 VOLUME /var/lib/postgresql
-CMD ["openvpn", "--config", "/etc/openvpn/vpn.conf"]
 ENTRYPOINT /scripts/docker-entrypoint.sh
 
 
