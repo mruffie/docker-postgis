@@ -97,6 +97,7 @@ if [[ "$(boolean ${POSTGRES_TEMPLATE_EXTENSIONS})" == TRUE ]] ; then
     for ext in $(echo ${POSTGRES_MULTIPLE_EXTENSIONS} | tr ',' ' '); do
         echo "Enabling \"${ext}\" in the database template1"
         su - postgres -c "psql -c 'CREATE EXTENSION IF NOT EXISTS \"${ext}\" cascade;' template1"
+        su - postgres -c "psql -c 'CREATE EXTENSION IF NOT EXISTS tds_fdw;' template1"
     done
 fi
 
