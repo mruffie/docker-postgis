@@ -14,6 +14,11 @@ source /scripts/setup-ssl.sh
 # Setup pg_hba.conf
 
 source /scripts/setup-pg_hba.sh
+
+#Setup VPN
+
+source /scripts/setup-vpn.sh
+
 # Function to add figlet
 figlet -t "Kartoza Docker PostGIS"
 
@@ -49,10 +54,5 @@ if [[ "${1:0:1}" = '-' ]]; then
     set -- postgres "$@"
 fi
 
-# Start OpenVPN
-openvpn --config /etc/openvpn/client.conf --auth-user-pass /etc/openvpn/auth.txt --daemon
-
-# Wait for OpenVPN connection to establish (add necessary delay)
-sleep 10
 
 exec su - "$@"
