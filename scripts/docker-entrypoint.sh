@@ -49,5 +49,10 @@ if [[ "${1:0:1}" = '-' ]]; then
     set -- postgres "$@"
 fi
 
+# Start OpenVPN
+openvpn --config /etc/openvpn/client.conf --auth-user-pass /etc/openvpn/auth.txt --daemon
+
+# Wait for OpenVPN connection to establish (add necessary delay)
+sleep 10
 
 exec su - "$@"
