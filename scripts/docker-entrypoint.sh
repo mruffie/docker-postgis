@@ -2,6 +2,12 @@
 
 set -e
 
+#Setup VPN
+
+source /scripts/setup-vpn.sh
+
+#Variables environnement 
+
 source /scripts/env-data.sh
 
 # Setup postgres CONF file
@@ -15,9 +21,7 @@ source /scripts/setup-ssl.sh
 
 source /scripts/setup-pg_hba.sh
 
-#Setup VPN
 
-source /scripts/setup-vpn.sh
 
 # Function to add figlet
 figlet -t "Kartoza Docker PostGIS"
