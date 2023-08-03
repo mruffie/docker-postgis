@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-
+echo "Je suis le fichier openvpn."
 # Verifiez que le fichier de configuration OpenVPN existe
 if [ ! -f "/etc/openvpn/vpn.conf" ]; then
     echo "Le fichier de configuration OpenVPN existe pas."
@@ -10,7 +10,7 @@ if [ ! -f "/etc/openvpn/userpass.txt" ]; then
     echo "Le fichier userpass OpenVPN existe pas."
     #exit 1
 fi
-
+echo "Les fichier de configuration OpenVPN existent, je lance."
 # Start OpenVPN
 openvpn --config /etc/openvpn/vpn.conf --auth-user-pass /etc/openvpn/userpass.txt --daemon
 
