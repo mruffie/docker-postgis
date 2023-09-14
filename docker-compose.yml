@@ -9,7 +9,7 @@ services:
   db:
     image: kartoza/postgis:13-3.1
     volumes:
-      - postgis-data:/var/lib/postgresql
+      - postgis-data:/var/lib/postgresql/data
       - dbbackups:/backups
     environment:
       # If you need to create multiple database you can add coma separated databases eg gis,data
